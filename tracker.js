@@ -181,7 +181,7 @@
 
     camera = new window.Camera(videoEl, {
       onFrame: async () => {
-        if (isRunning && faceMesh) {
+        if (isRunning && faceMesh && videoEl && videoEl.readyState >= 2) {
           try { await faceMesh.send({ image: videoEl }); } catch (_) { }
         }
       },
@@ -386,9 +386,10 @@
   }
 
   // ─── Mouse tracking ───────────────────────────────────────────────────────────
-  document.addEventListener('mousemove', (e) => {
+  function onDocumentMouseMove(e) {
     mouseX = e.clientX; mouseY = e.clientY;
-  }, { passive: true });
+  }
+  document.addEventListener('mousemove', onDocumentMouseMove, { passive: true });
 
   // ─── Destroy ──────────────────────────────────────────────────────────────────
   function destroy() {
@@ -405,6 +406,9 @@
       window.removeEventListener('mouseup', onWindowMouseUpDrag);
     }
     
+    document.removeEventListener('mousemove', onDocumentMouseMove);
+    window.removeEventListener('eyeclick:frombridge', onBridgeMessage);
+
     for (const el of [container, statusBadge, blinkFlash, virtualCursor]) {
       if (el && el.parentNode) el.parentNode.removeChild(el);
     }
@@ -414,7 +418,7 @@
   }
 
   // ─── Command listener (from bridge via CustomEvent) ───────────────────────────
-  window.addEventListener('eyeclick:frombridge', (e) => {
+  function onBridgeMessage(e) {
     const { type, payload } = e.detail;
 
     if (type === 'INIT') {
@@ -471,6 +475,8 @@
         toBridge('CALIBRATION_RESULT', { baselineEAR: parseFloat(avg.toFixed(4)) });
       }, payload.durationMs || 3000);
     }
-  });
+  }
+
+  window.addEventListener('eyeclick:frombridge', onBridgeMessage);
 
 })();
