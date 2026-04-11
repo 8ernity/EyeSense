@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "EyeSense — Blink to Click",
+  "version": "1.2.0",
+  "description": "Control your browser with eye blinks. Uses MediaPipe Face Mesh for real-time blink detection — 100% local, no data sent anywhere.",
+
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles-injected.css",
+        "tracker.js",
+        "lib/drawing_utils.js",
+        "lib/face_mesh.js",
+        "lib/camera_utils.js",
+        "lib/face_mesh_solution_packed_assets_loader.js",
+        "lib/face_mesh_solution_packed_assets.data",
+        "lib/face_mesh_solution_simd_wasm_bin.js",
+        "lib/face_mesh_solution_simd_wasm_bin.wasm",
+        "lib/face_mesh_solution_simd_wasm_bin.data",
+        "lib/face_mesh_solution_wasm_bin.js",
+        "lib/face_mesh_solution_wasm_bin.wasm",
+        "lib/face_mesh.binarypb"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

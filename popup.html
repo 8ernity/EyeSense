@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EyeSense</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="20" cy="14" rx="19" ry="13" stroke="#00e5ff" stroke-width="2"/>
+        <circle  cx="20" cy="14" r="6"  fill="#00e5ff" opacity="0.9"/>
+        <circle  cx="20" cy="14" r="2.5" fill="#0a0e1a"/>
+        <!-- lashes -->
+        <line x1="20" y1="1"  x2="20" y2="4"  stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="27" y1="3"  x2="25" y2="6"  stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="33" y1="8"  x2="30" y2="10" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="13" y1="3"  x2="15" y2="6"  stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="7"  y1="8"  x2="10" y2="10" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text">EyeSense</span>
+    </div>
+    <div class="version">v1.0</div>
+  </header>
+
+  <!-- ── Status ── -->
+  <section class="status-section">
+    <div class="status-ring" id="statusRing">
+      <div class="status-inner">
+        <span class="status-icon" id="statusIcon">⏸</span>
+        <span class="status-text" id="statusText">Inactive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main Toggle ── -->
+  <section class="control-section">
+    <button class="btn-toggle" id="btnToggle">
+      <span class="btn-icon">▶</span>
+      <span class="btn-label">Start Tracking</span>
+    </button>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <section class="stats-bar" id="statsBar">
+    <div class="stat">
+      <span class="stat-value" id="statEAR">—</span>
+      <span class="stat-label">EAR</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-value" id="statBlinks">0</span>
+      <span class="stat-label">Blinks</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-value" id="statClicks">0</span>
+      <span class="stat-label">Clicks</span>
+    </div>
+  </section>
+
+  <!-- ── Settings Panel ── -->
+  <section class="settings-section">
+    <div class="settings-header" id="settingsToggle">
+      <span>⚙ Settings</span>
+      <span class="chevron" id="settingsChevron">›</span>
+    </div>
+
+    <div class="settings-body" id="settingsBody">
+
+      <!-- Blink Threshold -->
+      <div class="setting-row">
+        <label class="setting-label">
+          Blink Sensitivity
+          <span class="tooltip" title="Lower EAR threshold = more sensitive. Default: 0.21">?</span>
+        </label>
+        <div class="slider-row">
+          <input type="range" id="sliderThreshold"
+                 min="0.10" max="0.35" step="0.01" value="0.21" />
+          <span class="slider-val" id="valThreshold">0.21</span>
+        </div>
+      </div>
+
+      <!-- Blink Frames -->
+      <div class="setting-row">
+        <label class="setting-label">
+          Confirm Frames
+          <span class="tooltip" title="Frames eye must be closed before a blink is registered. Higher = fewer false positives.">?</span>
+        </label>
+        <div class="slider-row">
+          <input type="range" id="sliderFrames"
+                 min="1" max="6" step="1" value="2" />
+          <span class="slider-val" id="valFrames">2</span>
+        </div>
+      </div>
+
+      <!-- Click Delay -->
+      <div class="setting-row">
+        <label class="setting-label">
+          Click Cooldown
+          <span class="tooltip" title="Minimum ms between clicks to prevent rapid-fire accidents.">?</span>
+        </label>
+        <div class="slider-row">
+          <input type="range" id="sliderDelay"
+                 min="200" max="2000" step="100" value="600" />
+          <span class="slider-val" id="valDelay">600ms</span>
+        </div>
+      </div>
+
+      <!-- Toggles -->
+      <div class="toggle-row">
+        <span class="toggle-label">Enable Eye Cursor</span>
+        <label class="switch">
+          <input type="checkbox" id="chkEyeCursor" checked />
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <span class="toggle-label">Show Overlay</span>
+        <label class="switch">
+          <input type="checkbox" id="chkOverlay" checked />
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <span class="toggle-label">Sound Feedback</span>
+        <label class="switch">
+          <input type="checkbox" id="chkSound" />
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <!-- Calibration Button -->
+      <button class="btn-calibrate" id="btnCalibrate" disabled>
+        🎯 Run Calibration
+      </button>
+      <p class="calibrate-hint">Start tracking first, then calibrate.</p>
+
+    </div><!-- /settings-body -->
+  </section>
+
+  <!-- ── Info Bar ── -->
+  <footer class="footer">
+    <span>All processing is 100% local — no data leaves your device.</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
