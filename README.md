@@ -21,6 +21,30 @@ eye-blink-extension/
     └── icon128.png
 ```
 
+## 🔁 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+
+    participant U as User
+    participant C as Camera
+    participant S as System
+    participant AI as Eye Model
+    participant UI as Display
+
+    loop Real-Time Tracking
+        U->>C: Look or move eyes
+        C->>S: Capture frame
+
+        S->>AI: Process frame
+        AI-->>S: Return eye position
+
+        S->>S: Analyze attention
+        S->>UI: Update state
+
+        UI-->>U: Show focus or alert
+    end
+```
 ---
 
 ## 🚀 Installation (Load Unpacked)
