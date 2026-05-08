@@ -1,4 +1,7 @@
-# 👁 EyeSense — Blink to Click Chrome Extension
+<h1 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f441/512.gif" width="40" style="vertical-align:-4px;">
+  EyeSense — Blink to Click Chrome Extension
+</h1>
 
 Control your browser with your eyes. EyeSense uses **MediaPipe Face Mesh** to detect blinks in real-time via your webcam and fires a mouse click at your cursor position — all processed locally in the browser, with zero data leaving your device.
 
