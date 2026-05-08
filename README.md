@@ -122,7 +122,10 @@ The **"Confirm Frames"** setting controls how many consecutive closed-eye frames
 
 ---
 
-## 🎯 Calibration
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3af/512.gif" width="28" style="vertical-align:-4px;">
+  Calibration
+</h2>
 
 1. Start Tracking first.
 2. Open settings → click **"Run Calibration"**.
